@@ -1,8 +1,8 @@
-import './App.css';
+import styles from './App.module.css'
 
 const App = () => {
   return (
-    <div className="App">
+    <div className={styles.header}>
       <h1>TEST APP</h1>
     </div>
   );
