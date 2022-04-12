@@ -1,10 +1,21 @@
-import PeoplePage from '@containers/PeoplePage';
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import routesConfig from '@routes/routesConfig';
+import Header from '@components/Header';
 
 import styles from './App.module.css'
 
 const App = () => {
   return (
-    <PeoplePage />
+    <BrowserRouter>
+      <div className={styles.wrapper} >
+        <Header />
+        <Routes>
+          {routesConfig.map(({ path, element }, index) =>
+            <Route key={index} path={path} element={element} />
+          )}
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 

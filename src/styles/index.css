@@ -56,7 +56,7 @@ VARIABLES
 
    --theme-light-bgimage:   linear-gradient(to right bottom, #051937, #162454, #312d70, #533389, #7a359f);
    --theme-dark-bgimage:    linear-gradient(to right bottom, #000000, #160b11, #20141e, #281b2e, #2b2440);
-   /* --theme-neitral-bgimage: url(@static/bg.jpg); */
+   --theme-neitral-bgimage: url(@static/bg.jpg);
    --theme-default-bgimage: var(--theme-neitral-bgimage);
 }
 
@@ -77,7 +77,7 @@ body {
    background-image: var(--theme-default-bgimage);
    background-size: cover;
    background-repeat: no-repeat;
-   background-position: top left;
+   background-position: top right;
    background-attachment: fixed;
 }
 img {
