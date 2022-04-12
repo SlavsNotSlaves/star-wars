@@ -8,6 +8,7 @@ import { getPeopleImage } from '@services/getPeopleData';
 import PersonInfo from '@components/PersonPage/PersonInfo';
 import PersonPhoto from '@components/PersonPage/PersonPhoto';
 import PersonLinkBack from '@components/PersonPage/PersonLinkBack';
+import PersonFilms from '@components/PersonPage/PersonFilms';
 
 import styles from './PersonPage.module.css';
 
@@ -15,6 +16,7 @@ const PersonPage = ({ setErrorApi }) => {
    const [personInfo, setPersonInfo] = useState(null)
    const [personName, setPersonName] = useState(null)
    const [personPhoto, setPersonPhoto] = useState(null)
+   const [personFilms, setPersonFilms] = useState(null)
 
    const { id } = useParams()
 
@@ -34,6 +36,9 @@ const PersonPage = ({ setErrorApi }) => {
             ])
             setPersonName(res.name)
             setPersonPhoto(getPeopleImage(id))
+
+            res.films.length && setPersonFilms(res.films)
+
             setErrorApi(false)
          } else {
             setErrorApi(true)
@@ -46,9 +51,12 @@ const PersonPage = ({ setErrorApi }) => {
          <PersonLinkBack />
          <div className={styles.wrapper} >
             <span className={styles.person__name} >{personName}</span>
-            <div className={styles.container} >
+            <div className={styles.container}>
                <PersonPhoto personPhoto={personPhoto} personName={personName} />
+
                {personInfo && <PersonInfo personInfo={personInfo} />}
+
+               {personFilms && <PersonFilms personFilms={personFilms} />}
             </div>
          </div>
       </>
