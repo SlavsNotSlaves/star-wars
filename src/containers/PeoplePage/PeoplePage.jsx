@@ -8,7 +8,6 @@ import { getPeopleId, getPeopleImage, getPeoplePageId } from '@services/getPeopl
 import { getApiResource, changeHTTP } from '@utils/network';
 import { useQueryParams } from '@hooks/useQueryParams';
 import PeopleNavigation from '@components/PeoplePage/PeopleNavigation';
-
 import styles from './PeoplePage.module.css';
 
 const PeoplePage = ({ setErrorApi }) => {
