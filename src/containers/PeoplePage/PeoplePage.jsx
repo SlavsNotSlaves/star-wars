@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import PeopleList from '../../components/PeoplePage/PeopleList/PeopleList';
 import { API_PEOPLE } from '../../constants/api';
+import { withErrorApi } from '../../hoc-helpers/withErrorApi';
 import { getPeopleId, getPeopleImage } from '../../services/getPeopleData';
 import { getApiResource } from '../../utils/network';
 import styles from './PeoplePage.module.css';
 
-const PeoplePage = () => {
+const PeoplePage = ({ setErrorApi }) => {
 
    const [people, setPeople] = useState(null)
-   const [errorApi, setErrorApi] = useState(false)
 
    const getResource = async (url) => {
       const res = await getApiResource(url)
@@ -35,19 +35,12 @@ const PeoplePage = () => {
 
    return (
       <>
-         {errorApi
-            ? <h2>Error</h2>
-            : (
-               <>
-                  <h1>Navigation</h1>
-                  {people && <PeopleList people={people} />}
-               </>
-            )
-         }
+         <h1>Navigation</h1>
+         {people && <PeopleList people={people} />}
       </>
    );
 }
 
 
 
-export default PeoplePage;
+export default withErrorApi(PeoplePage);
