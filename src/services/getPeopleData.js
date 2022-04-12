@@ -1,4 +1,4 @@
-import { HTTP, SWAPI_ROOT, SWAPI_PEOPLE, HTTPS, URL_IMG_PERSON, GUIDE_IMG_EXTENSION } from "../constants/api"
+import { HTTP, SWAPI_ROOT, SWAPI_PEOPLE, HTTPS, URL_IMG_PERSON, GUIDE_IMG_EXTENSION } from "@constants/api"
 
 
 //-----------------------------------------------
