@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import propTypes from 'prop-types';
 
 import PeopleList from '@components/PeoplePage/PeopleList';
 import { API_PEOPLE } from '@constants/api';
@@ -43,6 +44,8 @@ const PeoplePage = ({ setErrorApi }) => {
    );
 }
 
-
+PeoplePage.propTypes = {
+   setErrorApi: propTypes.func,
+}
 
 export default withErrorApi(PeoplePage);
