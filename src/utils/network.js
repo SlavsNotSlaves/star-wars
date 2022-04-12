@@ -1,5 +1,12 @@
+import { HTTP, HTTPS } from "@constants/api";
+
+// Изменяет URL с HTTP на HTTPS
+export const changeHTTP = url => {
+   return url ? url.replace(HTTP, HTTPS) : url;
+}
 
 
+// Отправляет запрос Fetch
 export const getApiResource = async (url) => {
 
    try {
