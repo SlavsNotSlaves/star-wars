@@ -32,6 +32,12 @@
    text-shadow: var(--text-shadow-yellow);
    transition: var(--transition);
 }
+
+.list__container a:hover {
+   background-color: var(--color-white);
+   color: var(--color-violet);
+}
+
 .list__container :global(a.active) {
    border: 2px solid var(--color-violet);
    color: var(--color-violet);
