@@ -8,11 +8,11 @@ import { getPeopleImage } from '@services/getPeopleData';
 import PersonInfo from '@components/PersonPage/PersonInfo';
 import PersonPhoto from '@components/PersonPage/PersonPhoto';
 import PersonLinkBack from '@components/PersonPage/PersonLinkBack';
+import UiLoading from '@ui/UiLoading';
 
 import styles from './PersonPage.module.css';
 
 const PersonFilms = React.lazy(() => import('@components/PersonPage/PersonFilms'))
-
 
 const PersonPage = ({ setErrorApi }) => {
    const [personInfo, setPersonInfo] = useState(null)
@@ -51,15 +51,18 @@ const PersonPage = ({ setErrorApi }) => {
    return (
       <>
          <PersonLinkBack />
+
+
+
          <div className={styles.wrapper} >
-            <span className={styles.person__name} >{personName}</span>
+            <span className={styles.person__name}>{personName}</span>
             <div className={styles.container}>
                <PersonPhoto personPhoto={personPhoto} personName={personName} />
 
                {personInfo && <PersonInfo personInfo={personInfo} />}
 
                {personFilms && (
-                  <Suspense fallback={<h1>Loading...</h1>}>
+                  <Suspense fallback={<UiLoading theme='white' isShadow />}>
                      <PersonFilms personFilms={personFilms} />
                   </Suspense>)}
             </div>
