@@ -51,13 +51,13 @@ VARIABLES
    /* THEMES */
    --theme-light-header:   #dfe2df;
    --theme-dark-header:    #ca6c6f;
-   --theme-neitral-header: #cccc46;
-   --theme-default-header: var(--theme-neitral-header);
+   --theme-neutral-header: #cccc46;
+   --theme-default-header: var(--theme-neutral-header);
 
    --theme-light-bgimage:   linear-gradient(to right bottom, #051937, #162454, #312d70, #533389, #7a359f);
    --theme-dark-bgimage:    linear-gradient(to right bottom, #000000, #160b11, #20141e, #281b2e, #2b2440);
-   --theme-neitral-bgimage: url(@static/bg.jpg);
-   --theme-default-bgimage: var(--theme-neitral-bgimage);
+   --theme-neutral-bgimage: url(@static/bg.jpg);
+   --theme-default-bgimage: var(--theme-neutral-bgimage);
 }
 
 /***************************************************
