@@ -7,6 +7,7 @@ import { getApiResource } from '@utils/network';
 import { withErrorApi } from '@hoc-helpers/withErrorApi';
 import { getPeopleId, getPeopleImage } from '@services/getPeopleData';
 import SearchPageInfo from '@components/SearchPage/SearchPageInfo';
+import UiLoading from '@ui/UiLoading';
 import UiInput from '@ui/UiInput';
 
 import styles from './SearchPage.module.css';
@@ -14,8 +15,11 @@ import styles from './SearchPage.module.css';
 const SearchPage = ({ setErrorApi }) => {
    const [inputSearchValue, setInputSearchValue] = useState('')
    const [people, setPeople] = useState([])
+   const [isSearchLoading, setIsSearchLoading] = useState(false)
+
 
    const getResponse = async param => {
+      setIsSearchLoading(true)
       const res = await getApiResource(API_SEARCH + param)
 
       if (res) {
@@ -29,8 +33,10 @@ const SearchPage = ({ setErrorApi }) => {
          })
          setPeople(peopleList);
          setErrorApi(false)
+         setIsSearchLoading(false)
       } else {
          setErrorApi(true)
+         setIsSearchLoading(false)
       }
    }
 
@@ -41,7 +47,6 @@ const SearchPage = ({ setErrorApi }) => {
    const debouncedGetResponse = useCallback(
       debounce(value => getResponse(value), 300), []
    )
-
 
    const handleInputChange = (value) => {
       setInputSearchValue(value)
@@ -58,8 +63,11 @@ const SearchPage = ({ setErrorApi }) => {
             placeholder="Input character's name"
             classes={styles.input__search}
          />
+         {isSearchLoading
+            ? <UiLoading theme='white' isShadow />
+            : <SearchPageInfo people={people} />
+         }
 
-         <SearchPageInfo people={people} />
       </>
    );
 }

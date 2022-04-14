@@ -4,9 +4,7 @@
    padding: 0;
    list-style-type: none;
 }
-.list__item {
-   /* margin: 0; */
-}
+
 .list__item a {
    display: inline-flex;
    color: var(--color-black);
@@ -14,6 +12,16 @@
    text-align: center;
    cursor: pointer;
 }
+
+.list__item {
+   transition: all var(--transition) ;
+}
+
+.list__item:hover {
+   background-color: rgba(0, 0, 0, 0.8);
+   border-radius: 5px;
+}
+
 .person__photo {
    width: 70px;
    height: 70px;
@@ -36,5 +44,11 @@
 @media screen and (max-width: 850px) {
    .list__container {
        column-count: 2;
+   }
+}
+
+@media screen and (max-width: 550px) {
+   .list__container {
+       column-count: 1;
    }
 }

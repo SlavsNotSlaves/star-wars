@@ -21,6 +21,7 @@
    width: 250px;
    height: 450px;
    margin-right: var(--spacing-medium);
+   margin-bottom: var(--spacing-medium);
    border-radius: var(--border-radius);
    box-shadow: var(--box-shadow-black);
    transition: var(--transition);
@@ -75,9 +76,10 @@ COLOR THEME
        height: 350px;
    }
 }
+
 @media screen and (max-width: 750px) {
    .item {
-       height: 300px;
-       margin: var(--spacing-small);
+      height: 300px;
+      margin: 0 auto 20px ;
    }
 }

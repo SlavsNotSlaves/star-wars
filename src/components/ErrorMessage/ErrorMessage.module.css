@@ -22,3 +22,14 @@
    border-radius: var(--border-radius-medium);
    box-shadow: var(--box-shadow-white);
 }
+
+@media screen and (max-width: 750px) {
+   .text {
+      width: 100%;
+      margin-top: 20px;
+      font-size: var(--font-size-subheader);
+   }
+   .video {
+      width: 80%;
+   }
+}

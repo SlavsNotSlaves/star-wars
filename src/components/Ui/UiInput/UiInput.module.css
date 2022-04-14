@@ -9,7 +9,7 @@
    display: inline-flex;
 }
 .input {
-   min-width: 300px;
+   min-width: 400px;
    padding: 10px 15px;
    padding-right: calc(var(--clear-width) + 15px);
    border: var(--border) solid;
@@ -39,4 +39,10 @@
 }
 .clear__disabled {
    opacity: .2;
+}
+
+@media screen and (max-width: 510px) {
+   .input {
+   min-width: 250px;
+}
 }

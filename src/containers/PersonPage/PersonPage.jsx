@@ -22,6 +22,7 @@ const PersonPage = ({ setErrorApi }) => {
    const [personPhoto, setPersonPhoto] = useState(null)
    const [personFilms, setPersonFilms] = useState(null)
    const [personFavorite, setPersonFavorite] = useState(false)
+   const [isPersonLoading, setIsPersonLoading] = useState(false)
 
    const storeData = useSelector(state => state.favoriteReducer)
 
@@ -29,6 +30,7 @@ const PersonPage = ({ setErrorApi }) => {
 
    useEffect(() => {
       (async () => {
+         setIsPersonLoading(true)
          const res = await getApiResource(`${API_PERSON}/${id}/`)
 
          storeData[id] ? setPersonFavorite(true) : setPersonFavorite(false)
@@ -51,8 +53,10 @@ const PersonPage = ({ setErrorApi }) => {
             res.films.length && setPersonFilms(res.films)
 
             setErrorApi(false)
+            setIsPersonLoading(false)
          } else {
             setErrorApi(true)
+            setIsPersonLoading(false)
          }
       })()
    }, [])
@@ -61,25 +65,31 @@ const PersonPage = ({ setErrorApi }) => {
       <>
          <PersonLinkBack />
 
-         <div className={styles.wrapper} >
-            <span className={styles.person__name}>{personName}</span>
-            <div className={styles.container}>
-               <PersonPhoto
-                  personFavorite={personFavorite}
-                  setPersonFavorite={setPersonFavorite}
-                  personId={personId}
-                  personPhoto={personPhoto}
-                  personName={personName}
-               />
+         {isPersonLoading
+            ? <UiLoading theme='white' isShadow />
+            : <div className={styles.wrapper}>
 
-               {personInfo && <PersonInfo personInfo={personInfo} />}
+               <span className={styles.person__name}>{personName}</span>
 
-               {personFilms && (
-                  <Suspense fallback={<UiLoading theme='white' isShadow />}>
-                     <PersonFilms personFilms={personFilms} />
-                  </Suspense>)}
+               <div className={styles.container}>
+
+                  <PersonPhoto
+                     personFavorite={personFavorite}
+                     setPersonFavorite={setPersonFavorite}
+                     personId={personId}
+                     personPhoto={personPhoto}
+                     personName={personName}
+                  />
+
+                  {personInfo && <PersonInfo personInfo={personInfo} />}
+
+                  {personFilms && (
+                     <Suspense fallback={<UiLoading theme='white' isShadow />}>
+                        <PersonFilms personFilms={personFilms} />
+                     </Suspense>)}
+               </div>
             </div>
-         </div>
+         }
       </>
    );
 }

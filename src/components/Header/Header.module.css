@@ -43,3 +43,13 @@
    color: var(--color-violet);
    text-shadow: none;
 }
+
+@media screen and (max-width: 510px) {
+   .list__container {
+      display: block;
+      margin: 0 auto;
+   }
+   .logo {
+      margin-right: var(--spacing-small);
+   }
+}

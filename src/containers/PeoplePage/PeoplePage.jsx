@@ -8,6 +8,7 @@ import { getPeopleId, getPeopleImage, getPeoplePageId } from '@services/getPeopl
 import { getApiResource, changeHTTP } from '@utils/network';
 import { useQueryParams } from '@hooks/useQueryParams';
 import PeopleNavigation from '@components/PeoplePage/PeopleNavigation';
+import UiLoading from '@ui/UiLoading';
 
 import styles from './PeoplePage.module.css';
 
@@ -17,11 +18,14 @@ const PeoplePage = ({ setErrorApi }) => {
    const [prevPage, setPrevPage] = useState(null)
    const [nextPage, setNextPage] = useState(null)
    const [counterPage, setCounterPage] = useState(1)
+   const [isPeopleLoading, setIsPeopleLoading] = useState(false)
+
 
    const query = useQueryParams()
    const queryPage = query.get('page')
 
    const getResource = async (url) => {
+      setIsPeopleLoading(true)
       const res = await getApiResource(url)
 
       if (res) {
@@ -38,8 +42,10 @@ const PeoplePage = ({ setErrorApi }) => {
          setNextPage(changeHTTP(res.next))
          setCounterPage(getPeoplePageId(url))
          setErrorApi(false)
+         setIsPeopleLoading(false)
       } else {
          setErrorApi(true)
+         setIsPeopleLoading(false)
       }
    }
 
@@ -49,13 +55,18 @@ const PeoplePage = ({ setErrorApi }) => {
 
    return (
       <>
-         <PeopleNavigation
-            getResource={getResource}
-            prevPage={prevPage}
-            nextPage={nextPage}
-            counterPage={counterPage}
-         />
-         {people && <PeopleList people={people} />}
+         {isPeopleLoading
+            ? <UiLoading theme='white' isShadow />
+            : <>
+               <PeopleNavigation
+                  getResource={getResource}
+                  prevPage={prevPage}
+                  nextPage={nextPage}
+                  counterPage={counterPage}
+               />
+               {people && <PeopleList people={people} />}
+            </>
+         }
       </>
    );
 }
