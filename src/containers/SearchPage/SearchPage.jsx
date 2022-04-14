@@ -1,5 +1,5 @@
 import propTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { API_SEARCH } from '@constants/api';
 import { getApiResource } from '@utils/network';
@@ -31,6 +31,10 @@ const SearchPage = ({ setErrorApi }) => {
          setErrorApi(true)
       }
    }
+
+   useEffect(() => {
+      getResponse('')
+   }, [])
 
    const handleInputChange = (event) => {
       const value = event.target.value
