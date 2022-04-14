@@ -1,21 +1,21 @@
 import propTypes from 'prop-types';
 import { useCallback, useEffect, useState } from 'react';
+import { debounce } from 'lodash';
 
 import { API_SEARCH } from '@constants/api';
 import { getApiResource } from '@utils/network';
 import { withErrorApi } from '@hoc-helpers/withErrorApi';
 import { getPeopleId, getPeopleImage } from '@services/getPeopleData';
 import SearchPageInfo from '@components/SearchPage/SearchPageInfo';
+import UiInput from '@ui/UiInput';
 
 import styles from './SearchPage.module.css';
-import { debounce } from 'lodash';
 
 const SearchPage = ({ setErrorApi }) => {
    const [inputSearchValue, setInputSearchValue] = useState('')
    const [people, setPeople] = useState([])
 
    const getResponse = async param => {
-      console.log(param);
       const res = await getApiResource(API_SEARCH + param)
 
       if (res) {
@@ -43,9 +43,7 @@ const SearchPage = ({ setErrorApi }) => {
    )
 
 
-   const handleInputChange = (event) => {
-      const value = event.target.value
-
+   const handleInputChange = (value) => {
       setInputSearchValue(value)
       debouncedGetResponse(value)
    }
@@ -53,12 +51,14 @@ const SearchPage = ({ setErrorApi }) => {
    return (
       <>
          <h1 className='header__text'>Search</h1>
-         <input
-            type="text"
-            onChange={handleInputChange}
+
+         <UiInput
             value={inputSearchValue}
+            handleInputChange={handleInputChange}
             placeholder="Input character's name"
+            classes={styles.input__search}
          />
+
          <SearchPageInfo people={people} />
       </>
    );
