@@ -1,9 +1,11 @@
 import propTypes from 'prop-types';
 import { useState } from 'react';
+
 import { API_SEARCH } from '@constants/api';
 import { getApiResource } from '@utils/network';
 import { withErrorApi } from '@hoc-helpers/withErrorApi';
 import { getPeopleId, getPeopleImage } from '@services/getPeopleData';
+import SearchPageInfo from '@components/SearchPage/SearchPageInfo';
 
 import styles from './SearchPage.module.css';
 
@@ -46,6 +48,7 @@ const SearchPage = ({ setErrorApi }) => {
             value={inputSearchValue}
             placeholder="Input character's name"
          />
+         <SearchPageInfo people={people} />
       </>
    );
 }
