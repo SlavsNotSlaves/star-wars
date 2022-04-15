@@ -55,15 +55,15 @@ const PeoplePage = ({ setErrorApi }) => {
 
    return (
       <>
+         <PeopleNavigation
+            getResource={getResource}
+            prevPage={prevPage}
+            nextPage={nextPage}
+            counterPage={counterPage}
+         />
          {isPeopleLoading
             ? <UiLoading theme='white' isShadow />
             : <>
-               <PeopleNavigation
-                  getResource={getResource}
-                  prevPage={prevPage}
-                  nextPage={nextPage}
-                  counterPage={counterPage}
-               />
                {people && <PeopleList people={people} />}
             </>
          }
